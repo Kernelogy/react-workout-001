@@ -3,6 +3,7 @@ import Box from './comp/Box'
 import Person from './comp/Person'
 import ScoreBoard from './comp/ScoreBoard';
 import Garage from './comp/Garage';
+import ProductCard from './comp/ProductCard';
 
 function App(){
   const name = "Mukilan"
@@ -19,6 +20,15 @@ function App(){
   ]
   return(
     <>
+    {
+      items.map((item)=>{
+        return <ProductCard 
+          title = {item.title}
+          desc = {item.desc}
+          price = {item.price}        
+        ></ProductCard>
+      })
+    }
     {
       students.map((student)=>{
         return <>
