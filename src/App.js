@@ -1,85 +1,42 @@
-import './App.css';
-import Box from './comp/Box'
-import Person from './comp/Person'
-import ScoreBoard from './comp/ScoreBoard';
-import Garage from './comp/Garage';
-import ProductCard from './comp/ProductCard';
+import { useState } from 'react'
+import './App.css'
 
 function App(){
-  const name = "Mukilan"
-  const age = 40
-  const fruits = ["Apple", "Orange", "Mango", "Grape", "Guava"]
-  const students = [
-    {key: 1, value: "Mukilan"},
-    {key: 2, value: "Manu"},
-    {key: 3, value: "Anbu"}
-  ]
-  const items = [
-    {title: "Watch", desc: "Titan Watch", price: "450.50"},
-    {title: "Pen", desc: "Parker Pen", price: "600.50"}
-  ]
-  return(
-    <>
-    {
-      items.map((item)=>{
-        return <ProductCard 
-          title = {item.title}
-          desc = {item.desc}
-          price = {item.price}        
-        ></ProductCard>
-      })
+    const [username, setUsername] = useState("")
+    const [email, setEmail] = useState("")
+    const [contact, setContact] = useState("")
+    const [password, setPassword] = useState("")
+
+    const formSubmitted = (event) => {
+        alert("Form Submitted")
+        setUsername(event.target.username.value)
+        setEmail(event.target.email.value)
+        setContact(event.target.contact.value)
+        setPassword(event.target.password.value)
+        event.preventDefault()
     }
-    {
-      students.map((student)=>{
-        return <>
-          {student.key} ===== {student.value} <br></br>
+    return (
+        <>
+        <h1>Signup Form</h1>
+        <form method='POST' onSubmit={formSubmitted}>
+            <input type='text' name='username' placeholder='Username'/> <br></br>
+            <input type='email' name='email' placeholder='email@example.com' /> <br></br>
+            <input type='contact' name='contact' placeholder='9876543210' /> <br></br>
+            <input type='password' name='password' placeholder='Password' /> <br></br>
+            <input type='submit' value="Submit" />
+        </form>
+        {
+            username && email && contact && password &&
+            <p>
+                The Given Values are <br></br>
+                Username : { username } <br></br>
+                Email : { email } <br></br>
+                Contact : { contact } <br></br>
+                Password : { password }
+            </p>
+        }
         </>
-      })
-    }
-    <ol>
-      {
-        fruits.map((fruit)=>{
-          return <li>{fruit}</li>
-        })
-      }
-    </ol>
-
-    {/* <Garage />
-    <Garage length="5"/> */}
-      {/* {
-        name && age && 
-        <h1>All the data are available</h1>
-      }
-      {
-        name &&
-        <h1>Name is {name} {name}</h1>
-      }
-      {
-        age &&
-        <h1>Age is {age}</h1>
-      } */}
-      {/* <ScoreBoard isScored="false" /> */}
-    </>
-  )
+    )
 }
 
-/*
-function App() {
-  const buttonClicked = () => {
-    alert("I'm Clicked")
-  }
-  const buttonClicked2 = (event) => {
-    console.log(event.target)
-    event.target.value = "Button is Off"
-    event.target.style = "color: red"
-  }
-  return (
-    <div>
-        <input type='button' value="Click On Me" onClick={ buttonClicked } /> <br></br>
-        <input type='button' value="Button is On" onClick={ buttonClicked2 } />
-    </div>
-  );
-}
-*/
-
-export default App;
+export default App
